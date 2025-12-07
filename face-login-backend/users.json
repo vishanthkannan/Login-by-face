@@ -1,0 +1,14 @@
+{
+    "guna@gmail.com": {
+        "name": "guna",
+        "image": "E:\\sem-6\\Personal-project\\Login-by-face\\face-login-backend\\registered_faces\\guna@gmail.com.jpg"
+    },
+    "sanjay@gmail.com": {
+        "name": "sanjay",
+        "image": "E:\\sem-6\\Personal-project\\Login-by-face\\face-login-backend\\registered_faces\\sanjay@gmail.com.jpg"
+    },
+    "vishanthk.23it@kongu.edu": {
+        "name": "vishanth",
+        "image": "E:\\sem-6\\Personal-project\\Login-by-face\\face-login-backend\\registered_faces\\vishanthk.23it@kongu.edu.jpg"
+    }
+}
