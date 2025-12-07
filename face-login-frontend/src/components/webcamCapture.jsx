@@ -1,13 +1,15 @@
-import { useRef } from "react";
+import { useRef, forwardRef, useImperativeHandle } from "react";
 import Webcam from "react-webcam";
 
-function WebcamCapture({ onCapture }) {
+const WebcamCapture = forwardRef((props, ref) => {
   const webcamRef = useRef(null);
 
-  const captureImage = () => {
-    const img = webcamRef.current.getScreenshot();
-    onCapture(img);
-  };
+  // Allows parent to call capture()
+  useImperativeHandle(ref, () => ({
+    capture() {
+      return webcamRef.current.getScreenshot();
+    }
+  }));
 
   return (
     <div style={{ textAlign: "center", marginTop: "15px" }}>
@@ -20,12 +22,8 @@ function WebcamCapture({ onCapture }) {
           videoConstraints={{ facingMode: "user" }}
         />
       </div>
-
-      <button className="btn" onClick={captureImage}>
-        Capture Face
-      </button>
     </div>
   );
-}
+});
 
 export default WebcamCapture;

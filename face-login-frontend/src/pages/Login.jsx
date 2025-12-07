@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import WebcamCapture from "../components/webcamCapture";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState(null);
   const [status, setStatus] = useState("");
+  const camRef = useRef(null);
 
-  const handleLogin = async () => {
-    if (!email || !image) {
-      setStatus("Enter email and capture your face.");
+  const loginUser = async () => {
+    if (!email) {
+      setStatus("Enter your email.");
       return;
     }
+
+    const image = camRef.current.capture();
 
     const res = await fetch("http://localhost:5000/login", {
       method: "POST",
@@ -27,20 +29,17 @@ function Login() {
       <h1 className="title">Login</h1>
 
       <div className="input-box">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" placeholder="Enter your email"
+          onChange={(e) => setEmail(e.target.value)} />
       </div>
 
-      <WebcamCapture onCapture={(img) => setImage(img)} />
+      <WebcamCapture ref={camRef} />
 
-      <button className="btn" onClick={handleLogin}>
+      <button className="btn" onClick={loginUser}>
         Login
       </button>
 
-      <h3 className="status">{status}</h3>
+      <div className="status">{status}</div>
     </div>
   );
 }

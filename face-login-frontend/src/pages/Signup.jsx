@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import WebcamCapture from "../components/webcamCapture";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [image, setImage] = useState(null);
   const [status, setStatus] = useState("");
+  const camRef = useRef(null);
 
-  const handleSignup = async () => {
-    if (!email || !name || !image) {
-      setStatus("Please fill all fields and capture your face.");
+  const registerUser = async () => {
+    if (!email || !name) {
+      setStatus("Please enter name & email.");
       return;
     }
+
+    const image = camRef.current.capture();
 
     const res = await fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, name, image }),
+      body: JSON.stringify({ name, email, image }),
     });
 
     const data = await res.json();
@@ -28,28 +30,22 @@ function Signup() {
       <h1 className="title">Create Account</h1>
 
       <div className="input-box">
-        <input
-          type="text"
-          placeholder="Enter your name"
-          onChange={(e) => setName(e.target.value)}
-        />
+        <input type="text" placeholder="Enter your name"
+          onChange={(e) => setName(e.target.value)} />
       </div>
 
       <div className="input-box">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" placeholder="Enter your email"
+          onChange={(e) => setEmail(e.target.value)} />
       </div>
 
-      <WebcamCapture onCapture={(img) => setImage(img)} />
+      <WebcamCapture ref={camRef} />
 
-      <button className="btn" onClick={handleSignup}>
-        Register Account
+      <button className="btn" onClick={registerUser}>
+        Register
       </button>
 
-      <h3 className="status">{status}</h3>
+      <div className="status">{status}</div>
     </div>
   );
 }

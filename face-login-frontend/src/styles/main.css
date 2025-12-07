@@ -1,4 +1,4 @@
-/* ---------------- GLOBAL RESET ---------------- */
+/* GLOBAL RESET */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #f8ca6e, #94f493);
+  background: linear-gradient(135deg, #5f72ff, #8f55ff);
   min-height: 100vh;
   padding: 20px;
   display: flex;
@@ -15,121 +15,103 @@ body {
   align-items: center;
 }
 
-/* ---------------- CARD CONTAINER ---------------- */
+/* CARD CONTAINER */
 .container {
   width: 430px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.92);
   padding: 30px;
   border-radius: 18px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   animation: fadeIn 0.6s ease-out;
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity:0; transform: translateY(25px); }
+  to { opacity:1; transform: translateY(0); }
 }
 
-/* ---------------- TITLE ---------------- */
+/* TITLE */
 .title {
   text-align: center;
   margin-bottom: 25px;
   font-size: 30px;
   font-weight: 700;
   color: #333;
-  letter-spacing: 1px;
 }
 
-/* ---------------- INPUTS ---------------- */
+/* INPUTS */
 .input-box input {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid #ccc;
-  margin: 8px 0;
-  transition: all 0.25s;
+  margin: 10px 0;
+  transition: all 0.25s ease;
 }
 
 .input-box input:focus {
   border-color: #7a59ff;
-  box-shadow: 0 0 8px rgba(122, 89, 255, 0.3);
+  box-shadow: 0 0 8px rgba(122,89,255,0.3);
 }
 
-/* ---------------- NAV LINKS ---------------- */
+/* NAV LINKS */
 .nav-links {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .nav-links a {
   margin: 0 15px;
   font-size: 19px;
+  text-decoration: none;
   color: white;
   font-weight: bold;
-  text-decoration: none;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
 .nav-links a:hover {
   opacity: 0.8;
-  text-shadow: 0px 0px 12px white;
 }
 
-/* ---------------- BUTTONS ---------------- */
+/* BUTTON */
 .btn {
   width: 100%;
   padding: 14px;
+  font-size: 18px;
   border-radius: 10px;
   border: none;
-  font-size: 18px;
-  background: linear-gradient(135deg, #d5c91b, #34fa52);
+  margin-top: 15px;
+  background: linear-gradient(135deg, #6d4cff, #a86fff);
   color: white;
   cursor: pointer;
-  margin-top: 15px;
-
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(92, 255, 160, 0.4);
+  transition: 0.3s ease;
+  box-shadow: 0 4px 14px rgba(118,92,255,0.4);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(118, 92, 255, 0.5);
-  opacity: 0.95;
+  box-shadow: 0 8px 20px rgba(118,92,255,0.5);
 }
 
 .btn:active {
   transform: scale(0.97);
-  box-shadow: 0 3px 10px rgba(118, 92, 255, 0.3);
 }
 
-/* ---------------- STATUS MESSAGE ---------------- */
+/* STATUS MESSAGE */
 .status {
-  margin-top: 20px;
-  text-align: center;
+  margin-top: 15px;
   font-size: 18px;
   font-weight: 600;
-  color: #333;
-  animation: fadeIn 0.4s ease;
+  text-align: center;
 }
 
-/* ---------------- WEBCAM FRAME ---------------- */
+/* WEBCAM FRAME */
 .webcam-frame {
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
   border: 3px solid #7a59ff;
-  margin-bottom: 12px;
-
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.5s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
 }
