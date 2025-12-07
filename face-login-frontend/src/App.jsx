@@ -1,8 +1,37 @@
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import Webcam from "react-webcam";
 
 function App() {
   const webcamRef = useRef(null);
+  const [status, setStatus] = useState("");
+
+  // Capture image and send to backend
+  const captureAndVerify = async () => {
+    setStatus("Verifying...");
+
+       // Capture Base64 image
+    const imageSrc = webcamRef.current.getScreenshot();
+
+        // Send to Flask backend
+    const response = await fetch("http://localhost:5000/verify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ image: imageSrc }),
+    });
+
+        const data = await response.json();
+    console.log(data);
+
+    if (data.status === "success"){
+      setStatus("Login Successful!");
+    } else if (data.status === "failed"){
+      setStatus("Login Failed. Try Again.");
+    } else {
+      setStatus("Error: " + data.message);
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -18,7 +47,9 @@ function App() {
         style={styles.webcam}
       />
 
-      <button style={styles.button}>Login</button>
+      <button style={styles.button} onClick={captureAndVerify}>Login</button>
+      <h2 style={styles.status}>{status}</h2>
+
     </div>
   );
 }
