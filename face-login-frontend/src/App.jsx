@@ -1,13 +1,24 @@
+import { useRef } from "react";
+import Webcam from "react-webcam";
+
 function App() {
+  const webcamRef = useRef(null);
+
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Face Login System</h1>
 
-      <div style={styles.box}>
-        <p style={styles.info}>Webcam preview will appear here soon...</p>
-      </div>
+      {/* Webcam Preview */}
+      <Webcam
+        ref={webcamRef}
+        audio={false}
+        screenshotFormat="image/jpeg"
+        width={350}
+        videoConstraints={{ facingMode: "user" }}
+        style={styles.webcam}
+      />
 
-      <button style={styles.button}>Login with Face ID</button>
+      <button style={styles.button}>Login</button>
     </div>
   );
 }
@@ -21,25 +32,19 @@ const styles = {
     minHeight: "100vh",       // Makes the container take up full screen height
     padding: "30px",
     fontFamily: "Arial",
-    backgroundColor: "#f9f8d8ff", // Added a light background to see the centering better
+    backgroundColor: "#e6e5ddff", // Added a light background to see the centering better
   },
   title: {
     fontSize: "32px",
     marginBottom: "20px",
   },
-  box: {
-    width: "350px",
-    height: "260px",
+    webcam: {
+    width: "360px",
+    height: "270px",
     margin: "0 auto",
-    border: "2px dashed #605e60ff",
-    borderRadius: "10px",
+    border: "3px dashed #8078e8ff",
+    borderRadius: "20px",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  info: {
-    color: "#494949ff",
-    fontSize: "16px",
   },
   button: {
     marginTop: "25px",
