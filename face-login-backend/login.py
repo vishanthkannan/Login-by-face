@@ -33,7 +33,12 @@ def login():
         )
 
         if result["verified"]:
-            return jsonify({"status": "success", "message": "Login successful"})
+            return jsonify({
+    "status": "success",
+    "message": "Login successful",
+    "name": users[email]["name"]
+})
+
         else:
             return jsonify({"status": "failed", "message": "Face mismatch"})
 
